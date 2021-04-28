@@ -7,7 +7,7 @@ const Login = () => {
         <div className="login pt-5">
             <h1 className="text-center mt-5 pb-5"><span className="l">L</span>earn</h1>
 
-            <div className="container shadow p-5 rounded mt-5 bg-white">
+            <div className="container containerls shadow p-5 rounded mt-5 bg-white">
                 <div className="row">
                     <div className="col-12 text-center order-last order-md-first col-md-6">
                         <div className="mt-4">

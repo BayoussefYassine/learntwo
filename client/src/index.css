@@ -1,5 +1,6 @@
 html, body{
   height: 100%;
+  max-width: 100%;
 }
 .l{
   color: #f8110d;
@@ -7,7 +8,7 @@ html, body{
 body{
   background-color: #F8F9FA;
 }
-.container{
+.containerls{
   width: 1000px;
 }
 .create-account a{
