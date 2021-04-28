@@ -14,7 +14,7 @@ body{
   font-size: 18px;
 }
 
-.login{
+.login, .register{
   height: 100%;
 }
 @media (max-width: 789px) {

@@ -3,7 +3,7 @@ import logosignup from './img/signup.jpg';
 
 const Register = () => {
     return ( 
-        <div className="register">
+        <div className="register pt-5">
             <h1 className="text-center mt-5 pb-5"><span className="l">L</span>earn</h1>
 
             <div className="container shadow p-5 rounded mt-5 bg-white">
@@ -12,7 +12,7 @@ const Register = () => {
                     <div className="col-12 col-md-6 mb-5 mb-md-0">
 
                         <form className=" mx-auto">
-                            <h2 className="my-4">Login</h2>
+                            <h2 className="my-4">Sign Up</h2>
                             
                             <div className="row form-group">
                                 <div className="col">
