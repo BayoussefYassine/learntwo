@@ -4,13 +4,13 @@ import userLogo from './img/newuser.png';
 const NavBar = () => {
     return ( 
 
-      <Navbar bg="white" expand="lg">
+      <Navbar className="shadow" bg="white" expand="lg">
         <div className="container">
-        <Navbar.Brand href="#home"><span className="l">L</span>earn</Navbar.Brand>
+        <Navbar.Brand className="LogoMenu mr-5" href="#home"><span className="l">L</span>earn</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link href="#home">Tasks</Nav.Link>
+        <Nav className="mr-auto tasks-profile">
+          <Nav.Link className="mr-3" href="#home">Tasks</Nav.Link>
           <Nav.Link href="#link">Profile</Nav.Link>
         </Nav>
 

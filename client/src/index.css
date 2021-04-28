@@ -27,6 +27,13 @@ body{
   }
 }
 
-@media (max-width: 768px) {
-  
+.LogoMenu{
+  font-size: 30px;
+  font-weight: bold;
+}
+.tasks-profile{
+  font-size: 23px;
+}
+.tasks-profile a {
+  padding-top: 12px;
 }
