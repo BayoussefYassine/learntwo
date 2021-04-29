@@ -37,7 +37,7 @@ const Register = () => {
                                     <input type="password" className="form-control" id="confirmPassword" placeholder="Password" />  
                                 </div>
                             </div>      
-                            <button type="submit" className="btn btn-primary mt-4">Register</button>                            
+                            <button type="submit" className="btn btn-danger mt-4">Register</button>                            
                         </form>
                     </div>
 
@@ -47,7 +47,7 @@ const Register = () => {
                         </div>
                         
                         <div className="mt-4 create-account">
-                            <Link to="/">Already Member?</Link>
+                            <Link to="/" className="login-a">Already Member?</Link>
                         </div>
                         
                     </div>

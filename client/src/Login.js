@@ -15,7 +15,7 @@ const Login = () => {
                         </div>
                         
                         <div className="mt-4 create-account">
-                            <Link to="/register">Creat Account</Link>
+                            <Link to="/register" className="login-a">Creat Account</Link>
                         </div>
                         
                     </div>
@@ -32,7 +32,7 @@ const Login = () => {
                                 <label for="exampleInputPassword1">Password</label>
                                 <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
                             </div>      
-                            <button type="submit" className="btn btn-primary float-right mt-4">Login</button>                            
+                            <button type="submit" className="btn btn-danger float-right mt-4">Login</button>                            
                         </form>
 
                     

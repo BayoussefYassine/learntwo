@@ -1,22 +1,28 @@
+import { useState } from 'react';
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 import userLogo from './img/newuser.png';
 
+
 const NavBar = () => {
+
     return ( 
 
       <Navbar className="shadow" bg="white" expand="lg">
-        <div className="container">
-        <Navbar.Brand className="LogoMenu mr-5" href="#home"><span className="l">L</span>earn</Navbar.Brand>
+        <div className="container container-navbar">
+        <Navbar.Brand className="LogoMenu mr-5" href="/home"><span className="l">L</span>earn</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto tasks-profile">
-          <Nav.Link className="mr-3" href="#home">Tasks</Nav.Link>
-          <Nav.Link href="#link">Profile</Nav.Link>
+          <NavLink className="mr-3" to="/home" activeClassName="active">Tasks</NavLink>
+          <NavLink to="/mytasks" activeClassName="active">My Tasks</NavLink>
+          
         </Nav>
-
+ 
         <Nav>
+        <h5 className="my-lg-auto my-4 mr-3 navbar-points"><span>2000</span> Points</h5>
         <NavDropdown title={<img src={userLogo} />} id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Settings</NavDropdown.Item>
+            <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
           </NavDropdown>
@@ -24,7 +30,6 @@ const NavBar = () => {
 
       </Navbar.Collapse>
         </div>
-      
     </Navbar>
        
      );
