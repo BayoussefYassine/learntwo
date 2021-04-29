@@ -1,4 +1,4 @@
-import { Navbar, NavItem, NavDropdown, MenuItem, Nav } from 'react-bootstrap';
+import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import userLogo from './img/newuser.png';
 
 const NavBar = () => {
