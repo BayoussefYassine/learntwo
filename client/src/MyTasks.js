@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
+import { Verify } from "./Verify";
 
 const MyTasks = () => {
+    Verify();
     return (
         <div className="mytasks">
             <NavBar />

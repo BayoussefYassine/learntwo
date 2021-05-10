@@ -11,6 +11,8 @@ import NotFound from "./NotFound";
 
 
 
+
+
 function App() {
   return (
     
@@ -26,7 +28,7 @@ function App() {
           <Route path="/home">
             <Home />
           </Route>
-          <Route path="/task">
+          <Route exact path="/task">
             <Task />
           </Route>
           <Route path="/mytasks">

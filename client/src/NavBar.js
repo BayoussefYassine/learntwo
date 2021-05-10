@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import userLogo from './img/newuser.png';
 
 
 const NavBar = () => {
 
+    const history = useHistory();
+    const handleClick = () =>{
+      localStorage.removeItem('user');
+      history.push('/');
+    }
     return ( 
 
       <Navbar className="shadow" bg="white" expand="lg">
@@ -24,7 +29,7 @@ const NavBar = () => {
         <NavDropdown title={<img src={userLogo} />} id="basic-nav-dropdown">
             <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
+            <button className="logout dropdown-item" onClick={handleClick}>Logout</button>
           </NavDropdown>
         </Nav>
 
