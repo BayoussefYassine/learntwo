@@ -16,7 +16,7 @@ app.use(cors());
 const db = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;
 
-mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true }) // useNewUrlParser & useUnifiedTopology this make sure to don't get any warning in console
+mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }) // useNewUrlParser & useUnifiedTopology this make sure to don't get any warning in console
   .then(() => app.listen(PORT, () => console.log(`Server Running on Port: ${PORT}`)))
   .catch((error) => console.log(`${error} did not connect`));
 

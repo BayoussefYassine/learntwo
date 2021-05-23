@@ -27,10 +27,6 @@ const Login = () => {
                 login: true,
                 token: res.data.accessToken
             }));
-            // let token = localStorage.getItem('user');
-            // let decoded = jwt_decode(token);
-            // console.log(decoded);
-            // console.log(res);
             history.push('/home');
         }).catch((err) =>{
             setUserFounded(true);

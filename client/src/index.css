@@ -59,7 +59,14 @@ a{
 }
 .list-topics li {
   list-style: none;
-  font-size: 25px;
+  font-size: 20px;
+}
+.list-topics button {
+  background: none;
+  border: none;
+}
+.list-topics button:hover {
+  color: #e2403e;
 }
 .navbar-points{
   color: #e2403e;
@@ -75,19 +82,19 @@ a{
 .reward{
   color: grey;
 }
-.valid{
+.Validated{
   background-color: #3eff38;
   border-radius: 20px;
   color: white;
 }
 
-.invalid{
+.Invalid{
   background-color: #e2403e;
   border-radius: 20px;
   color: white;
 }
 
-.inreview{
+.review{
   background-color: #dbdf00d8;
   border-radius: 20px;
   color: white;
@@ -127,4 +134,61 @@ a{
 }
 .active{
   color: #e2403e;
+}
+
+.firstDiv{
+  margin-top: 100px;
+}
+.profile-containerr button{
+    background: none;
+    color: #e2403e;
+    border: none;
+    outline: none;
+    padding: 0;
+}
+
+
+.profile-containerr button:active{
+  background: none !important;
+  color: #e2403e !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.profile-containerr button:hover{
+  background: none !important;
+  color: #971919 !important;
+  border: none !important;
+  outline: none !important;
+}
+.profile-containerr button:focus{
+  background: none !important;
+  color: #e2403e !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+small{
+  color: gray;
+}
+
+.content-task button{
+  background: none;
+  border: none;
+}
+.content-task button i:hover{
+  color: #e2403e;
+}
+
+.VolumeBar > * { background-color:#e2403e !important; }
+.VolumeBar{background-color: rgba(255, 0, 0, 0.2 ) !important ;}
+
+.notification{
+  margin-right: 70px;
+}
+
+.filter-post{
+  margin-left: 140px;
+  
 }

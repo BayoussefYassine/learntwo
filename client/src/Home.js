@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
 import Tasks from './Tasks';
 import { Verify } from './Verify';

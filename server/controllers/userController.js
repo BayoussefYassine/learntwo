@@ -4,9 +4,6 @@ import jwt from 'jsonwebtoken';
 import dotenv  from "dotenv";
 
 
-
-
-
 dotenv.config({ path: '../.env' });
 // get all users
 export const getAllUsers = async (req, res) =>{
@@ -78,9 +75,14 @@ export const addUser = async (req, res) =>{
     
 }
 
-export const updateEmail = async (req, res) =>{
+export const updateUser = async (req, res) =>{
+
     await userModel.findByIdAndUpdate(req.body.id,
-        req.body,
+        {
+        name: req.body.name,
+        username: req.body.username
+        },
+
         (err, result) =>{
 
             console.log(req.body)
@@ -92,4 +94,75 @@ export const updateEmail = async (req, res) =>{
             res.send(result)
         }
     });
+}
+
+export const updateEmail = async (req, res) =>{
+
+    const userExist = await userModel.findOne({email: req.body.email});
+    if(userExist) return res.status(400).json('Email Already Exist!!');
+
+    await userModel.findByIdAndUpdate(req.body.id,
+        req.body,
+        (err, result) =>{
+
+        if(err){
+            res.send(err)
+        }
+        else{
+            res.send(result)
+        }
+    });
+}
+
+
+export const updatePassword = async (req, res) =>{
+    const passwordHash = bcrypt.hashSync(req.body.password, 10);
+    await userModel.findByIdAndUpdate(req.body.id,
+        {password: passwordHash},
+
+        (err, result) =>{
+
+            console.log(req.body)
+
+        if(err){
+            res.send(err)
+        }
+        else{
+            res.send(result)
+        }
+    });
+}
+
+export const AdminUpdateUser = async (req, res) =>{
+    await userModel.findByIdAndUpdate(req.body.id,
+        {
+            name: req.body.name,
+            username: req.body.username,
+            email: req.body.email,
+            role: req.body.role
+        },
+
+        (err, result) =>{
+
+        if(err){
+            res.send(err)
+        }
+        else{
+            res.send(result)
+        }
+    });
+}
+
+export const deleteUser = async (req, res) => {
+    console.log(req.body)
+    await userModel.findByIdAndRemove(req.body.id, (err) => {
+        console.log(req.body)
+        if(err){
+            res.send(err);
+        } else {
+            res.send('User deleted!!');
+        }
+    })
+        
+
 }
