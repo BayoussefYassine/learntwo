@@ -10,9 +10,8 @@ import LoadingBar from "./LoadingBar";
 import ReactNotification from 'react-notifications-component';
 import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import SchemaValidationPassword from "./validation/UpdatePassword";
+import { useFormik } from "formik";
 
 
 
@@ -23,8 +22,6 @@ const Profile = () => {
     const [email, SetEmail] = useState('');
     const [name, SetName] = useState('');
     const [username, SetUsername] = useState('');
-    const [password, SetPassword] = useState('');
-    const [passwordTwo, SetPasswordTwo] = useState('');
     const [oldPassword, setOldPassword] = useState('');
     const [verifyOldPassword, setVerifyOldPassword] = useState(false);
 
@@ -47,7 +44,6 @@ const Profile = () => {
     const [isPending, setIsPending] = useState(true);
 
     const [emailExist, setEmailExist] = useState(false);
-    const [passwordMatch, setPasswordMatch] = useState(false);
     const [validUsername, setValidUsername] = useState(false);
     const [data, setData] = useState('');
     const [points, setPoints] = useState('');
@@ -62,9 +58,6 @@ const Profile = () => {
 
     const [errorPayment, setErrorPayment] = useState(true);
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: yupResolver(SchemaValidationPassword),
-    });
 
 // get data from database
     useEffect(() => {
@@ -150,29 +143,31 @@ const Profile = () => {
             } );
     };
 
-    const handleFormPassword = (data) => {
-        // e.preventDefault();
-        const ps = {id: decoded.id, old: oldPassword, password, passwordTwo: passwordTwo };
-        console.log('xxxx')
-        axios({
+    const formik = useFormik({
+        initialValues: {
+            password: '',
+            passwordTwo: ''
+        },
+        onSubmit: (values) => {
+          const ps = {id: decoded.id, old: oldPassword, password: values.password, passwordTwo: values.passwordTwo };
+          axios({
             method: 'post',
             url: 'http://localhost:5000/update/password/old',
             data: ps
             }).then((res) => { 
-                console.log("ddddd")
+
                 if(res.data){
                     setVerifyOldPassword(false);
                     axios({
                         method: 'post',
                         url: 'http://localhost:5000/updatepassword',
-                        data: data
+                        data: ps
                         }).then(res => {
-                            if(res.status != 204){
+
                                 setVerifyOldPassword(false);
-                                SetPassword('');
-                                SetPasswordTwo('');
+                                values.password = '';
+                                values.passwordTwo = '';
                                 setOldPassword('');
-                                setPasswordMatch(false);
                                 handleClosePassword();
                                 store.addNotification({
                                     title: "Notification!",
@@ -187,10 +182,8 @@ const Profile = () => {
                                     onScreen: true
                                     }
                                 });
-                            }else{
-                                setPasswordMatch(true);
                             }
-                        }).catch(err => {
+                        ).catch(err => {
                             console.log('Error: ',err.message)
                         } );
                 }else{
@@ -199,7 +192,10 @@ const Profile = () => {
             }).catch(err => {
                 console.log('Error: ',err.message)
             } );
-    };
+ 
+        },
+        validationSchema: SchemaValidationPassword
+    })
 
     const handlePayment = (e) =>{
       
@@ -433,36 +429,39 @@ const Profile = () => {
                     onHide={handleClosePassword}
                     backdrop="static"
                     keyboard={false}
-                >   <form onSubmit={handleSubmit(handleFormPassword)}>
+                >   <form onSubmit={formik.handleSubmit}>
                     <Modal.Header closeButton>
                     <Modal.Title>Change password</Modal.Title>
                     
                     </Modal.Header>
                     <Modal.Body>
                     <div className="form-group">
-                    <label for="oldpassword">Old password</label>
+
+                        <label for="oldpassword">Old password</label>
                         <input type="password" class="form-control" id="oldpassword"
-                        value={oldPassword}
-                        onChange={(e) => setOldPassword(e.target.value)} 
-                        required/>
+                                value={oldPassword}
+                                onChange={(e) => setOldPassword(e.target.value)} 
+                                required/>
                         {verifyOldPassword && <p className="text-danger mt-2 ml-2">Password Incorrect!!</p>}
+
                         <label for="password">New password</label>
                         <input type="password" class="form-control" id="password" name="password"
-                        {...register("password")}
-                        value={password}
-                        onChange={(e) => SetPassword(e.target.value)} 
+                                    
+                                    value={formik.values.password}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
                         />
-                        <p className="text-danger mt-2 ml-2"> {errors.password?.message} </p>
+                        {formik.touched.password && <div class="text-danger mt-3">{formik.errors.password}</div>}
 
                         <label for="password" className="mt-3">Confirm password</label>
-                        <input type="password" class="form-control" id="passwordtwo" name="confirmPassword"
-                        {...register("confirmPassword")}
-                        value={passwordTwo}
-                        onChange={(e) => SetPasswordTwo(e.target.value)}
+                        <input type="password" class="form-control" id="passwordtwo" name="passwordTwo"
+
+                                value={formik.values.passwordTwo}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
                         
                         />
-                        <p className="text-danger mt-2 ml-2">  {errors.confirmPassword?.message} </p>
-                        {passwordMatch && <p className="text-danger mt-2 ml-2">Password not match!!</p>}
+                        {formik.touched.passwordTwo && <div class="text-danger mt-3">{formik.errors.passwordTwo}</div>}
                         
                     </div>
                     </Modal.Body>

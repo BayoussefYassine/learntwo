@@ -76,8 +76,8 @@ export const updateAnswer = async (req, res) =>{
 
 
 export const getAnswerReview = async (req, res) =>{
-
-    const answers = await answerModel.find({id_problem: req.body.id, state: "In review"})
+    // console.log(req.body)
+    const answers = await answerModel.find({id_problem: req.body.id, id_user: req.body.id_user, state: "In review"})
     try {     
         res.status(200).json(answers);
     } catch (error) {

@@ -21,13 +21,13 @@ const Question = () => {
 
     let token = localStorage.getItem('user');
     let decoded = jwt_decode(token);
-
+    
     useEffect(() => {
 
-        const dataOne = axios.post("http://localhost:5000/problemid", {id});
-        const dataTwo = axios.post("http://localhost:5000/answercount", {id});
-        const dataThree = axios.post("http://localhost:5000/answercount/valid", {id});
-
+        const dataOne = axios.post("http://localhost:5000/problemid", {id, id_user: decoded.id});
+        const dataTwo = axios.post("http://localhost:5000/answercount", {id, id_user: decoded.id});
+        const dataThree = axios.post("http://localhost:5000/answercount/valid", {id, id_user: decoded.id});
+        
         axios.all([dataOne, dataTwo, dataThree] ).then(
             axios.spread((problem, answer, valid) => {
                 setProblem(problem.data);

@@ -55,7 +55,7 @@ export const getUserDetails = async (req, res) =>{
 
 // add new user
 export const addUser = async (req, res) =>{
-
+    console.log(req.body);
     const userExist = await userModel.findOne({email: req.body.email});
     if(userExist) return res.status(200).json('Email Already Exist!!');
 
@@ -147,6 +147,7 @@ export const verifyOdlPassword = async (req, res) => {
 
 export const updatePassword = async (req, res) =>{
 
+        console.log(req.body)
         if(req.body.password === req.body.passwordTwo){
             const passwordHash = bcrypt.hashSync(req.body.password, 10);
             await userModel.findByIdAndUpdate(req.body.id,
